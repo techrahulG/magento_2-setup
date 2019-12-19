@@ -1,0 +1,22 @@
+version: "3.3"
+services:
+
+  magendo:
+   build: .
+   image: 'rahuldock16/magento2'
+   container_name: 'magento2'
+   networks:
+       - my-network
+   ports:
+       - "45030:80"
+   volumes:
+       - /devops/rahul/project-name/data:/var/www/html/project_name
+       - /devops/rahul/project-name/nginx:/etc/nginx/conf.d
+       - /devops/rahul/project-name/logs:/var/log/nginx
+       - ./bash.sh:/mnt/bash.sh
+   privileged: true
+   command: bash -c "sh /mnt/bash.sh"
+networks:
+  my-network:
+volumes:
+  container-volume:
