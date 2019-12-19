@@ -64,3 +64,63 @@ ervice will start automatically but we need to enable it.
     CMD systemctl enable php-fpm.service
     ENTRYPOINT ["/usr/sbin/init"]
 
+
+
+# docker-compose.yml
+
+version is very important part of this file which is depend on docker version.
+
+    version: "3.3"
+
+inside services you can define project title.
+
+     services:
+         magento:
+  
+here Dockerfile is getting called   
+
+      build: .  
+
+after building Dockerfile this will tag image with name 
+
+    image: 'rahuldock16/magento2'    
+    
+set the container name 
+
+      container_name: 'magento_2'        
+      
+allow you to make changes in prodution environment also
+
+       environment:
+          PRODUCTION: 'true'    
+      
+port tag is use to expose ports
+
+      ports:
+        - "60065:80"
+      
+ volume tag is use to mount the volumes from inside container to outside
+      
+      volumes:
+         - /devops/rahul/project-name/data:/var/www/html/project-name
+         - /devops/rahul/project-name/nginx:/etc/nginx/conf.d
+         - /devops/rahul/project-name/logs:/var/log/nginx
+       
+privileged tag is for grant permission to container.
+
+      privileged: true
+
+Now here will run bash file.
+
+     command: bash -c "sh /root/bash.sh"
+     
+at the end you need to  define the volumes
+      
+      networks:
+        my-network:
+      volumes:
+        container-volume:
+        
+        
+        
+        
