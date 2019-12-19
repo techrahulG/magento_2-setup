@@ -9,7 +9,7 @@ Dockerfile start with FROM Tag which is allow to pull image
 RUN tag is use to run command inside the image you have pulled
 
     FROM centos:7
-    MAINTAINER sarath.kandala@adapty.com
+    MAINTAINER your_email@gmail.com
     RUN yum -y install epel-release
     RUN yum install nginx -y
     RUN yum install git -y
@@ -97,7 +97,7 @@ allow you to make changes in prodution environment also
 port tag is use to expose ports
 
       ports:
-        - "60065:80"
+        - "60010:80"
       
  volume tag is use to mount the volumes from inside container to outside
       
@@ -114,13 +114,39 @@ Now here will run bash file.
 
      command: bash -c "sh /root/bash.sh"
      
-at the end you need to  define the volumes
+At the end you need to  define the volumes
       
       networks:
         my-network:
       volumes:
         container-volume:
+  
+ # bash.sh
+ 
+     #!/bin/bash
+    git clone git_path_to_clone -v /var/www/html/preface
+    
+# default.conf
+
+    upstream fastcgi_backend {
+    server 127.0.0.1:9000;
+        }
+    server {
+    listen 80;
+    server_name _;
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+    #return 404;
+    set $MAGE_ROOT /var/www/html/project_file_namae;
+    include /var/www/html/project_file_namae/nginx.conf.sample;
+    }
+
+
+
+
+ 
+ 
+ 
         
-        
-        
+
         
