@@ -124,7 +124,7 @@ At the end you need to  define the volumes
  # bash.sh
  
      #!/bin/bash
-    git clone git_path_to_clone -v /var/www/html
+    git clone git_path_to_clone -v /var/www/html/project_name
     
 # default.conf
 
