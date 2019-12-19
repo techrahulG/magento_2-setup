@@ -111,9 +111,9 @@ privileged tag is for grant permission to container.
       privileged: true
 
 Now here will run bash file.
-
+  
      command: bash -c "sh /mnt/bash.sh"
-     
+      
 At the end you need to  define the volumes
       
       networks:
@@ -142,7 +142,14 @@ At the end you need to  define the volumes
     }
 
 
+# After this there are some manual step related to database connection.
 
+    bin/magento setup:install --base-url=weburl --db-host=host_id --db-name=db_name--db-user=database_user --db-password=database_password --admin-firstname=firstname --admin-lastname=sirname --admin-email=your_mail_id@gmail.com --admin-user=admin_name --admin-password=password --backend-frontname=admin --language=en_US --currency=KWD --cleanup-database --use-rewrites=1
+    
+Once you have done with all steps kindly restart the services of nginx and php-fpm
+   
+    systemctl restart nginx
+    systemctl restart php-fpm
 
  
  
