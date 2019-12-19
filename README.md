@@ -8,9 +8,9 @@ Dockerfile start with FROM Tag which is allow to pull image
     FROM centos:7
 RUN tag is use to run command inside the image you have pulled
 
-          FROM centos:7
-        MAINTAINER sarath.kandala@adapty.com
-        RUN yum -y install epel-release
+    FROM centos:7
+    MAINTAINER sarath.kandala@adapty.com
+    RUN yum -y install epel-release
     RUN yum install nginx -y
     RUN yum install git -y
     RUN mkdir -p /var/www/html/preface
@@ -19,23 +19,23 @@ RUN tag is use to run command inside the image you have pulled
     RUN yum install yum-utils -y
     RUN yum-config-manager --enable remi-php72 -y
     RUN yum install -y \
-         php \
-         php-mcrypt \
-         php-cli \
-         php-gd \
-       php-curl \
-       php-mysql \
-       php-ldap\
-       php-zip \
-       php-fileinfo \
-       php-fpm \
-       php-devel \
-       php-mbstring \
-       php-mcrypt \
-       php-soap \
-       php-apc \
-       php-common \
-       php-pear
+    php \
+    php-mcrypt \
+    php-cli \
+    php-gd \
+    php-curl \
+    php-mysql \
+    php-ldap\
+    php-zip \
+    php-fileinfo \
+    php-fpm \
+    php-devel \
+    php-mbstring \
+    php-mcrypt \
+    php-soap \
+    php-apc \
+    php-common \
+    php-pear    
     RUN sed -i "s|cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g" /etc/php.ini
     RUN sed -i '/cgi.fix_pathinfo/s/^;//g' /etc/php.ini
     COPY default.conf  /usr/local/bin
