@@ -36,18 +36,28 @@ RUN tag is use to run command inside the image you have pulled
     php-apc \
     php-common \
     php-pear 
-    
+    RUN yum install php-bcmath -y
+    RUN yum install php-intl -y
 here it is updating cgi.fix_pathinfo=1 to cgi.fix_pathinfo=0 and also uncommenting it.
     
     RUN sed -i "s|cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g" /etc/php.ini
     RUN sed -i '/cgi.fix_pathinfo/s/^;//g' /etc/php.ini
-    COPY default.conf  /usr/local/bin
+    
+you have to copy your default.conf file inside containers /etc/nginx/conf.d
+
+      COPY default.conf /etc/nginx/conf.d
+    
+This  RUN command will comment the lines from 38 to 57 in nginx.conf inside docker image.
+
     RUN sed -i '38,57 s/^/#/' /etc/nginx/nginx.conf
-    COPY default.conf /etc/nginx/conf.d
+    
+    
+Here it is copping the default.conf file into /mnt folder
     COPY bash.sh  /mnt
     RUN chmod +x /mnt/bash.sh
-    RUN yum install php-bcmath -y
-    RUN yum install php-intl -y
+
+    
+ervice will start automatically but we need to enable it.
 
     CMD systemctl enable nginx.service
     CMD systemctl start nginx.service
