@@ -35,8 +35,10 @@ RUN tag is use to run command inside the image you have pulled
     php-soap \
     php-apc \
     php-common \
-    php-pear  
+    php-pear 
+    
 here it is updating cgi.fix_pathinfo=1 to cgi.fix_pathinfo=0 and also uncommenting it.
+    
     RUN sed -i "s|cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g" /etc/php.ini
     RUN sed -i '/cgi.fix_pathinfo/s/^;//g' /etc/php.ini
     COPY default.conf  /usr/local/bin
