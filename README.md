@@ -105,14 +105,14 @@ port tag is use to expose ports
          - /devops/rahul/project-name/data:/var/www/html/project-name
          - /devops/rahul/project-name/nginx:/etc/nginx/conf.d
          - /devops/rahul/project-name/logs:/var/log/nginx
-       
+         - ./bash.sh:/mnt/bash.sh
 privileged tag is for grant permission to container.
 
       privileged: true
 
 Now here will run bash file.
 
-     command: bash -c "sh /root/bash.sh"
+     command: bash -c "sh /mnt/bash.sh"
      
 At the end you need to  define the volumes
       
